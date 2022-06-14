@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 function hello() {
     return "Hello World"
 }
@@ -5,3 +6,4 @@ function hello() {
 module.exports = hello;
 
 //Ok but actually fix it now
+
