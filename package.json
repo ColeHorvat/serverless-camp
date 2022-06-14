@@ -4,11 +4,14 @@
   "description": "",
   "scripts": {
     "start": "func start",
-    "test": "echo \"No tests yet...\""
+    "test": "echo \"No tests yet...\"",
+    "lint": "eslint src --ext .js"
   },
   "dependencies": {
     "cypress": "^8.2.0",
     "node-fetch": "^2.6.1"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "eslint": "^8.17.0"
+  }
 }
