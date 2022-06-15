@@ -9,6 +9,6 @@ module.exports = async function (context, req) {
     const base64data = Buffer.from(data).toString('base64');
     context.res = {
         // status: 200, /* Defaults to 200 */
-        body: base64data
+        body: { base64data }
     };
 }
