@@ -14,7 +14,7 @@ module.exports = async function (context, req) {
         let base64data = Buffer.from(data).toString('base64');
         let rand = Math.floor(NAMES.length * Math.random());
 
-        images.push(base64data);
+        images.push({ base64data });
         outputNames.push(NAMES[rand])
     }
 
