@@ -13,11 +13,12 @@ module.exports = async function (context, req) {
     let objects = Object.values(emotions)
     let mainEmotion = Object.keys(emotions).find(key => emotions[key] === Math.max(...objects));
 
+    let gif = await findGifs(mainEmotion)
 
     context.res = {
         // status: 200, /* Defaults to 200 */
         body: {
-            mainEmotion
+            gif
         }
     };
     console.log(result)
@@ -25,8 +26,10 @@ module.exports = async function (context, req) {
 
 
 async function analyzeImage(img){
-    const subscriptionKey = process.env.SUBSCRIPTIONKEY;
-    const uriBase = process.env.ENDPOINT + '/face/v1.0/detect';
+    //const subscriptionKey = process.env.SUBSCRIPTIONKEY;
+    //const uriBase = process.env.ENDPOINT + '/face/v1.0/detect';
+    const subscriptionKey = '38460f7dda94405380d266fe3fd9a0c0'
+    const uriBase = 'https://chorvat-face.cognitiveservices.azure.com' + '/face/v1.0/detect'
 
     let params = new URLSearchParams({
         'returnFaceId': 'true',
@@ -34,6 +37,7 @@ async function analyzeImage(img){
 
     })
 
+    console.log(uriBase + '?' + params.toString());
     let response = await fetch(uriBase + '?' + params.toString(), {
         method: 'POST',
         body: img,
@@ -47,7 +51,22 @@ async function analyzeImage(img){
     let data = await response.json()
     return data;
 }
-// key: 38460f7dda94405380d266fe3fd9a0c0
-// endpoint: https://chorvat-face.cognitiveservices.azure.com
+
+async function findGifs(emotion) {
+    // const GIPHY_KEY = process.env.GIPHY_KEY;
+    const GIPHY_KEY = 'WmYjweCXRdRv2PRNQiZwHSwe3iik23RK';
+    const uriBase = 'https://api.giphy.com/v1/gifs/translate'
+
+    let params = new URLSearchParams({
+        'api_key' : GIPHY_KEY,
+        's' : emotion,
+    })
+
+    let response = await fetch(uriBase + '?' + params.toString())
+
+    let data = await response.json()
+    return data.data.url
+
+}
 
 //process.env.variable
