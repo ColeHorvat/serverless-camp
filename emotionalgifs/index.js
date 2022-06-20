@@ -9,10 +9,15 @@ module.exports = async function (context, req) {
     const parts = multipart.Parse(body, boundary);
 
     let result = await analyzeImage(parts[0].data);
+    let emotions = result[0].faceAttributes.emotion;
+    let objects = Object.values(emotions)
+    let mainEmotion = Object.keys(emotions).find(key => emotions[key] === Math.max(...objects));
+
+
     context.res = {
         // status: 200, /* Defaults to 200 */
         body: {
-            result
+            mainEmotion
         }
     };
     console.log(result)
