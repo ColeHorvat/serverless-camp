@@ -1,7 +1,7 @@
-const QueryString = require('qs')
+const querystring = require('qs')
 module.exports = async function (context, req) {
     context.log('JavaScript HTTP trigger function processed a request.');
-    const queryObject = QueryString.parse(req.body);
+    const queryObject = querystring.parse(req.body);
 
     context.res = {
         // status: 200, /* Defaults to 200 */
