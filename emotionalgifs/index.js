@@ -26,10 +26,8 @@ module.exports = async function (context, req) {
 
 
 async function analyzeImage(img){
-    //const subscriptionKey = process.env.SUBSCRIPTIONKEY;
-    //const uriBase = process.env.ENDPOINT + '/face/v1.0/detect';
-    const subscriptionKey = '38460f7dda94405380d266fe3fd9a0c0'
-    const uriBase = 'https://chorvat-face.cognitiveservices.azure.com' + '/face/v1.0/detect'
+    const subscriptionKey = process.env.SUBSCRIPTIONKEY;
+    const uriBase = process.env.ENDPOINT + '/face/v1.0/detect';
 
     let params = new URLSearchParams({
         'returnFaceId': 'true',
@@ -53,8 +51,7 @@ async function analyzeImage(img){
 }
 
 async function findGifs(emotion) {
-    // const GIPHY_KEY = process.env.GIPHY_KEY;
-    const GIPHY_KEY = 'WmYjweCXRdRv2PRNQiZwHSwe3iik23RK';
+    const GIPHY_KEY = process.env.GIPHY_KEY;
     const uriBase = 'https://api.giphy.com/v1/gifs/translate'
 
     let params = new URLSearchParams({
