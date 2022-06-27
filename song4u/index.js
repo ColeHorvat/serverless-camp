@@ -1,11 +1,12 @@
 const querystring = require('qs')
+const fetch = require('node-fetch')
 module.exports = async function (context, req) {
     context.log('JavaScript HTTP trigger function processed a request.');
     const queryObject = querystring.parse(req.body);
     let gen = ""
 
-    let img = getImage(queryObject.MediaUrl0);
-    let result = analyzeImage(img);
+    let img = await getImage(queryObject.MediaUrl0);
+    let result = await analyzeImage(img);
 
     let age = result[0].faceAttributes.age;
 
