@@ -8,9 +8,10 @@
     "lint": "eslint src --ext .js"
   },
   "dependencies": {
+    "@azure/storage-blob": "^12.2.1",
     "cypress": "^8.2.0",
     "morse-code-converter": "^1.0.2",
-    "node-fetch": "^2.6.1",
+    "node-fetch": "^2.6.7",
     "parse-multipart": "^1.0.4",
     "qs": "^6.11.0"
   },
