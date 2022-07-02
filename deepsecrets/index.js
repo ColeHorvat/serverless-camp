@@ -35,7 +35,7 @@ async function createDocument(newItem){
     await create(client, databaseId, containerId);
 
     const querySpec = {
-        query: "SELECT top 1 * FROM c order by c._ts desc"
+        query: "SELECT * FROM c"
     }
 
     const {resources: items} = await container.items
@@ -56,7 +56,9 @@ module.exports = async function (context, req) {
     let document = {"message": message}
     let items = await createDocument(document)
 
-    let responseMessage = `Thanks 😊! Stored your secret "${message}". 😯 Someone confessed that: ${JSON.stringify(items[0].message)}`
+    let random_num = Math.floor(items.length * Math.random())
+
+    let responseMessage = `Thanks 😊! Stored your secret "${message}". 😯 Someone confessed that: ${JSON.stringify(items[random_num].message)}`
 
 
     context.res = {
