@@ -1,6 +1,28 @@
 const bunnForm = document.getElementById("bunnForm");
 const imageInput = document.getElementById("image")
+const downloadButton = document.getElementById("button2");
+const downloadInput = document.getElementById("downloadusername")
 
+downloadButton.addEventListener("click", async function(event) {
+	console.log("Downloading image...")
+	let username = downloadInput.value;
+
+	let resource = "https://serverless-camp-2022.azurewebsites.net/api/bunnimage-download?code=CVZtgvbVtumoZKj1aHMc39yYsk3dH3LgnvNItamltG1yAzFujLArug=="
+	let options = {
+		method: "GET",
+		headers: {
+			"username": username
+		}
+	}
+
+
+	const response = await fetch(resource, options)
+	const data = await response.json();
+	console.log(data)
+
+
+	window.open(data.downloadUri, "_self")
+})
 
 bunnForm.addEventListener('submit', async function(event) {
 	event.preventDefault();
