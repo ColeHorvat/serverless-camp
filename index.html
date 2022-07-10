@@ -5,13 +5,13 @@
 	</head>
 
 	<body>
-		<form id="bunnForm">
+		<form id="bunnForm" method="POST" enctype="multipart/form-data">
 			<label for="name">Code: </label> <br />
 			<input type="file" name="image" id="image" accept="image/x-png, image/jpeg"> <br />
 			<input type="text" id="username" name="name" aria-label="name" /> <br />
 			<input value="Submit" type="submit" />
 
-		</form enctype="multipart/form-data"> <br />
+		</form > <br />
 		<div id="output"></div>
 
 		<script src="index.js" type="text/javascript"></script>
