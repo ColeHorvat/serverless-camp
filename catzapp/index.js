@@ -1,6 +1,10 @@
 let catButton = document.getElementById("catButton")
 let catInput = document.getElementById("catInput")
 let catImage = document.getElementById("image")
+let image1 = document.getElementById("image1")
+let image2 = document.getElementById("image2")
+let image3 = document.getElementById("image3")
+let image4 = document.getElementById("image4")
 
 catButton.addEventListener("click", async function (e) {
 	const name1 = document.getElementById("name1").value
@@ -17,7 +21,18 @@ catButton.addEventListener("click", async function (e) {
 
     })
 
+	let functionUrl = baseUrl + '&' + params.toString()
 
-	catImage.src = baseUrl + text
+	let response = await fetch(functionUrl, {
+		method: 'GET',
+	})
+
+	let data = await response.json()
+	let baseSrc = "data:image/png; base64,"
+	
+	image1.src =  baseSrc + data.cat1
+	image2.src =  baseSrc + data.cat2
+	image3.src =  baseSrc + data.cat3
+	image4.src =  baseSrc + data.cat4
 
 })
