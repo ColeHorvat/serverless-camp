@@ -19,7 +19,7 @@ downloadButton.addEventListener("click", async function(event) {
 	const response = await fetch(resource, options)
 	const data = await response.json();
 	console.log(data)
-
+	
 
 	window.open(data.downloadUri, "_self")
 })
